@@ -1,7 +1,14 @@
+from flask import Flask, render_template, request, redirect, url_for
+import os
+
+app = Flask(__name__)
+basedir = os.path.abspath(os.path.dirname(__file__))
+todo_file = os.path.join(basedir, "todo_list.txt")
+
 todo_list = []
 
 try:
-    with open("todo_list.txt", "r") as file:
+    with open(todo_file, "r") as file:
         for line in file:
             todo_list.append(line.strip())
 except FileNotFoundError:
